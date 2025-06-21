@@ -39,7 +39,7 @@ export const RequestLogs: React.FC = () => {
 
   const clearLogs = async () => {
     if (!confirm('Are you sure you want to clear all request logs?')) return;
-    
+
     try {
       await mockApi.clearLogs();
       setLogs([]);
@@ -116,7 +116,7 @@ export const RequestLogs: React.FC = () => {
           <div className="p-4 border-b border-slate-200">
             <h3 className="font-semibold text-slate-900">Recent Requests</h3>
           </div>
-          
+
           {logs.length === 0 ? (
             <div className="p-8 text-center">
               <Activity className="h-12 w-12 text-slate-400 mx-auto mb-4" />
@@ -144,9 +144,9 @@ export const RequestLogs: React.FC = () => {
                     </div>
                     <div className="flex items-center space-x-2">
                       {log.matched_mock_id ? (
-                        <CheckCircle className="h-4 w-4 text-green-500" title="Matched mock endpoint" />
+                        <CheckCircle className="h-4 w-4 text-green-500" />
                       ) : (
-                        <AlertCircle className="h-4 w-4 text-orange-500" title="No mock endpoint matched" />
+                        <AlertCircle className="h-4 w-4 text-orange-500" />
                       )}
                       <span className={`text-sm font-medium ${getStatusColor(log.response_status)}`}>
                         {log.response_status}
@@ -173,7 +173,7 @@ export const RequestLogs: React.FC = () => {
           <div className="p-4 border-b border-slate-200">
             <h3 className="font-semibold text-slate-900">Request Details</h3>
           </div>
-          
+
           {selectedLog ? (
             <div className="p-4 space-y-4 max-h-96 overflow-y-auto">
               <div>

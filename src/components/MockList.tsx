@@ -1,20 +1,12 @@
 import React from 'react';
 import { Edit2, Trash2, RefreshCw, Globe, Clock, AlertCircle } from 'lucide-react';
-
-interface Mock {
-  id: number;
-  path: string;
-  method: string;
-  response_status: number;
-  created_at: string;
-  updated_at: string;
-}
+import { Mock } from '../types/mock';
 
 interface MockListProps {
   mocks: Mock[];
   loading: boolean;
   onEdit: (mock: Mock) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   onRefresh: () => void;
 }
 

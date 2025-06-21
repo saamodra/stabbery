@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Server, Plus, Activity, TestTube } from 'lucide-react';
 import { MockList } from './components/MockList';
 import { MockForm } from './components/MockForm';
 import { RequestLogs } from './components/RequestLogs';
 import { EndpointTester } from './components/EndpointTester';
 import { mockApi } from './api/mockApi';
+import { Mock } from './types/mock';
 
 type Tab = 'mocks' | 'create' | 'logs' | 'test';
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('mocks');
-  const [mocks, setMocks] = useState([]);
-  const [editingMock, setEditingMock] = useState(null);
+  const [mocks, setMocks] = useState<Mock[]>([]);
+  const [editingMock, setEditingMock] = useState<Mock | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,12 +37,12 @@ function App() {
     setEditingMock(null);
   };
 
-  const handleEditMock = (mock) => {
+  const handleEditMock = (mock: Mock) => {
     setEditingMock(mock);
     setActiveTab('create');
   };
 
-  const handleDeleteMock = async (id) => {
+  const handleDeleteMock = async (id: string) => {
     try {
       await mockApi.deleteMock(id);
       loadMocks();
